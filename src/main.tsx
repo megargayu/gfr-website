@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import './index.css';
+import "./index.css";
 
-import App from './App';
+import App from "./App";
 import "@fontsource/roboto";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="dark">
+      <App />
+    </div>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
