@@ -8,7 +8,7 @@ const App = () => {
       <div className="w-full h-screen bg-white dark:bg-dark font-body b-0">
         <div className="flex flex-col justify-center items-center h-full">
           <img
-            className="w-80 h-80 mb-1 drop-shadow-border blur-none"
+            className="w-80 h-80 mb-1 saturate-200 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
             src={logo}
           />
 
