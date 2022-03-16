@@ -1,7 +1,7 @@
 import DownArrow from "../../assets/icons/chevron-down.svg";
 import { motion } from "framer-motion";
 
-const ScrollDownArrow = () => {
+const ScrollDownArrow: React.FC = () => {
   return (
     <div>
       <motion.img

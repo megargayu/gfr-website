@@ -8,9 +8,7 @@ import "@fontsource/roboto";
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="dark">
-      <App />
-    </div>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
