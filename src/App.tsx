@@ -8,14 +8,18 @@ const App: React.FC = () => {
     <>
       <div className="w-full h-screen bg-dark font-body b-0">
         <div className="flex flex-col justify-center items-center h-full">
-          <img
-            className="w-80 h-80 mb-1 saturate-200 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-            src={logo}
-          />
+          <div
+            className="flex flex-col justify-center items-center h-[calc(100%_-_2.5rem_-_100px)]"
+          >
+            <img
+              className="w-80 h-80 mb-1 saturate-200 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] justify-self-center"
+              src={logo}
+            />
 
-          <GFRText />
+            <GFRText />
+          </div>
 
-          <button className="justify-self-end">
+          <button>
             <ScrollDownArrow />
           </button>
         </div>
