@@ -1,30 +1,32 @@
 import React, { useRef } from "react";
+import Panel from "./components/Panel";
 import Panel1 from "./components/panels/Panel1";
+import Panel2 from "./components/panels/Panel2";
+import Panel3 from "./components/panels/Panel3";
 
-const App: React.FC = () => {
-  const panels = [
-    useRef<HTMLDivElement | null>(null),
-    useRef<HTMLDivElement | null>(null),
-  ];
+const App = () => {
+  const panels = [Panel1, Panel2, Panel3];
+  const refs = Array.from({ length: panels.length }, () =>
+    useRef<HTMLDivElement | null>(null)
+  );
 
-  const scroll = (panel: number) => {
-    panels[panel]?.current?.scrollIntoView();
+  const scrollToPanel = (panel: number) => {
+    refs[panel]?.current?.scrollIntoView();
   };
 
-  return (
-    <>
-      <Panel1 ref={panels[0]} scroll={scroll} />
-
-      <div
-        className="w-full h-screen bg-blue-900 font-body b-0 p-10"
-        ref={panels[1]}
+  return panels.map((panel, i) => {
+    return (
+      <Panel
+        key={i}
+        ref={refs[i]}
+        scrollToPanel={() => scrollToPanel(i + 1)}
+        last={i == panels.length - 1}
+        className={panel.parentClassName}
       >
-        <h1 className="text-6xl font-semibold text-white text-center">
-          Panel 2
-        </h1>
-      </div>
-    </>
-  );
+        {React.createElement(panel)}
+      </Panel>
+    );
+  }, []);
 };
 
 export default App;

@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors');
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: ["./src/**/*.{html,tsx}", "./index.html"],
@@ -8,7 +8,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "dark": colors.neutral[900],
+        dark: colors.neutral[900],
       },
     },
   },
