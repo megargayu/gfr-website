@@ -6,6 +6,12 @@ module.exports = {
     fontFamily: {
       body: ["Roboto", "sans-serif"],
     },
+    dropShadow: {
+      glow: "0 0 20px rgba(255,255,255,0.3)"
+    },
+    letterSpacing: {
+      title: ".30em"
+    },
     extend: {
       colors: {
         dark: colors.neutral[900],

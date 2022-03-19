@@ -28,7 +28,7 @@ const GFRText: React.FC = () => {
       />
 
       <div className="p-10 rounded-sm bg-dark">
-        <h1 className="text-6xl font-semibold tracking-[.30em] text-white text-center">
+        <h1 className="text-6xl font-semibold tracking-title text-white text-center">
           Gael Force Robotics
         </h1>
       </div>

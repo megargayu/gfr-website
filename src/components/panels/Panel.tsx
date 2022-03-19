@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollDownArrow from "./ScrollDownArrow";
+import ScrollDownArrow from "../ScrollDownArrow";
 
 const Panel = React.forwardRef<
   HTMLDivElement | null,
