@@ -5,6 +5,7 @@ import TopPanel from "./components/panels/TopPanel";
 import TeamPanel from "./components/panels/TeamPanel";
 import Panel3 from "./components/panels/Panel3";
 
+// TODO: smooth scroll snap
 const App = () => {
   const panels = [TopPanel, TeamPanel, Panel3];
   const refs = Array.from({ length: panels.length }, () =>
@@ -16,7 +17,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="">
       {panels.map((panel, i) => {
         return (
           <Panel
@@ -30,7 +31,7 @@ const App = () => {
           </Panel>
         );
       }, [])}
-    </>
+    </div>
   );
 };
 
