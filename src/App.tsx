@@ -26,7 +26,27 @@ const App = () => {
     }
   };
 
+  const smoothKeys = (e: KeyboardEvent) => {
+    switch (e.code) {
+      case "ArrowUp":
+        e.preventDefault();
+        scrollToPanel(0);
+        break;
+
+      case "ArrowDown":
+      case "Space":
+        e.preventDefault();
+        scrollToPanel(1);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   document.addEventListener("wheel", smoothScroll, { passive: false });
+  document.addEventListener("keydown", smoothKeys, { passive: false });
+  // TODO: handle touch
 
   return (
     <div>

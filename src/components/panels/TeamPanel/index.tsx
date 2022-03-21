@@ -6,7 +6,7 @@ const TeamPanel: PanelInfo = () => (
     <h1 className="text-6xl font-semibold text-white tracking-title text-center m-10">
       Teams
     </h1>
-    <div className="flex gap-40 group">
+    <div className="flex justify-evenly w-full group">
       <Team teamLetter={"D"} />
       <Team teamLetter={"K"} />
       <Team teamLetter={"Z"} />
