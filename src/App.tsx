@@ -13,27 +13,28 @@ const App = () => {
   );
 
   const scrollToPanel = (panel: number) => {
-    refs[panel]?.current?.scrollIntoView();
+    if (checkIfScrolling()) return;
+    refs[panel].current?.scrollIntoView();
   };
 
   // TODO: handle different panels properly
   const smoothScroll = (e: WheelEvent) => {
     e.preventDefault();
 
-    if (!checkIfScrolling()) {
-      if (e.deltaY > 0) scrollToPanel(1);
-      else if (e.deltaY < 0) scrollToPanel(0);
-    }
+    if (e.deltaY > 0) scrollToPanel(1);
+    else if (e.deltaY < 0) scrollToPanel(0);
   };
 
   const smoothKeys = (e: KeyboardEvent) => {
     switch (e.code) {
       case "ArrowUp":
+      case "PageUp":
         e.preventDefault();
         scrollToPanel(0);
         break;
 
       case "ArrowDown":
+      case "PageDown":
       case "Space":
         e.preventDefault();
         scrollToPanel(1);

@@ -9,6 +9,6 @@ addEventListener("scroll", () => {
 
 const checkIfScrolling = () => {
   return isScrolling;
-}
+};
 
 export default checkIfScrolling;
