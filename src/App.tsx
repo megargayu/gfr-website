@@ -56,7 +56,6 @@ const App = () => {
   document.addEventListener("wheel", smoothScroll, { passive: false });
   document.addEventListener("keydown", smoothKeys, { passive: false });
   // TODO: handle touch
-  // TODO: fix wheel & key events; too many can cause it to glitch out (wheel events are delayed, and key events are weird)
 
   return (
     <div>
