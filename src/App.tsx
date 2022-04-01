@@ -7,7 +7,7 @@ import Panel3 from "./components/panels/Panel3";
 import { useSpring } from "framer-motion";
 
 const App = () => {
-  const scrollSpring = useSpring(window.scrollY, { duration: 500 });
+  const scrollSpring = useSpring(window.scrollY, { duration: 1000 });
   scrollSpring.onChange((v) => window.scrollTo({ top: v }));
 
   const panels = [TopPanel, TeamPanel, Panel3];
