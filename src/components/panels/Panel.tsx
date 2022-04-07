@@ -15,8 +15,8 @@ const Panel = React.forwardRef<
     ref={ref}
     {...props}
   >
-    <div className="flex flex-col items-center h-full">
-      <div className="h-[calc(100%_-_2.5rem_-_50px)] w-full">{children}</div>
+    <div className="flex flex-col items-center h-full px-5">
+      <div className="h-[calc(100%_-_2.5rem_-_20px)] sm:hsm:h-[calc(100%_-_2.5rem_-_50px)] w-full">{children}</div>
 
       {!last && (
         <button onClick={scrollToPanel}>

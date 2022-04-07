@@ -16,6 +16,11 @@ module.exports = {
       colors: {
         dark: colors.neutral[900],
       },
+      screens: {
+        hsm: {
+          'raw': '(min-height: 640px)'
+        }
+      }
     },
   },
   plugins: [],

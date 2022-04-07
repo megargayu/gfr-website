@@ -1,12 +1,13 @@
+import Title from "../../Title";
 import { PanelInfo } from "../Panel";
 import Team from "./Team";
 
 const TeamPanel: PanelInfo = () => (
   <div className="flex flex-col justify-center items-center h-full">
-    <h1 className="text-6xl font-semibold text-white tracking-title text-center m-10">
+    <Title>
       Teams
-    </h1>
-    <div className="flex gap-x-10 sm:gap-x-24 gap-y-0 flex-wrap w-full justify-center group">
+    </Title>
+    <div className="flex gap-x-24 sm:gap-x-24 gap-y-0 flex-wrap w-full justify-center group">
       <Team teamLetter={"D"} />
       <Team teamLetter={"K"} />
       <Team teamLetter={"Z"} />
