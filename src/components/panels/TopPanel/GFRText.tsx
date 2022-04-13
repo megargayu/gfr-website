@@ -29,7 +29,7 @@ const GFRText: React.FC = () => {
       />
 
       <div className="p-5 sm:hsm:p-10 rounded-sm bg-dark">
-        <Title>
+        <Title className="tracking-title">
           Gael Force Robotics
         </Title>
       </div>

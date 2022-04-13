@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import Panel from "./components/panels/Panel";
 import TopPanel from "./components/panels/TopPanel";
 import TeamPanel from "./components/panels/TeamPanel";
+import AboutPanel from "./components/panels/AboutPanel";
 import Panel3 from "./components/panels/Panel3";
 import { useSpring } from "framer-motion";
 import smoothScroll from "./utils/smoothScroll";
@@ -11,7 +12,7 @@ const App = () => {
   const scrollSpring = useSpring(window.scrollY, { duration: 1000 });
   scrollSpring.onChange((v) => window.scrollTo({ top: v }));
 
-  const panels = [TopPanel, TeamPanel, Panel3];
+  const panels = [TopPanel, AboutPanel, TeamPanel, Panel3];
   const refs = Array.from({ length: panels.length }, () =>
     useRef<HTMLDivElement | null>(null)
   );
