@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import Panel from "./components/panels/Panel";
 import TopPanel from "./components/panels/TopPanel";
 import TeamPanel from "./components/panels/TeamPanel";
 import Panel3 from "./components/panels/Panel3";
 import { useSpring } from "framer-motion";
+import smoothScroll from "./utils/smoothScroll";
 
 const App = () => {
   const scrollSpring = useSpring(window.scrollY, { duration: 1000 });
@@ -15,8 +16,14 @@ const App = () => {
     useRef<HTMLDivElement | null>(null)
   );
 
+  // on page refresh, go back to top (otherwise, page might be misaligned to panels)
+  useEffect(() => {
+    scrollSpring.set(window.scrollY, false);
+    scrollSpring.set(0);
+  }, []);
+
   const scrollToPanel = (panelNum: number) => {
-    if (scrollSpring.getVelocity() != 0) return;
+    if (scrollSpring.getVelocity() !== 0) return;
 
     const panel = refs[panelNum].current;
     if (panel == null) return;
@@ -25,37 +32,7 @@ const App = () => {
     scrollSpring.set(panel.offsetTop);
   };
 
-  // TODO: handle different panels properly
-  const smoothScroll = (e: WheelEvent) => {
-    e.preventDefault();
-
-    if (e.deltaY > 0) scrollToPanel(1);
-    else if (e.deltaY < 0) scrollToPanel(0);
-  };
-
-  const smoothKeys = (e: KeyboardEvent) => {
-    switch (e.code) {
-      case "ArrowUp":
-      case "PageUp":
-        e.preventDefault();
-        scrollToPanel(0);
-        break;
-
-      case "ArrowDown":
-      case "PageDown":
-      case "Space":
-        e.preventDefault();
-        scrollToPanel(1);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  document.addEventListener("wheel", smoothScroll, { passive: false });
-  document.addEventListener("keydown", smoothKeys, { passive: false });
-  // TODO: handle touch
+  smoothScroll(scrollToPanel, panels.length);
 
   return (
     <div>
