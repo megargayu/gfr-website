@@ -17,10 +17,15 @@ const App = () => {
     useRef<HTMLDivElement | null>(null)
   );
 
-  // on page refresh, go back to top (otherwise, page might be misaligned to panels)
+  // on page refresh, go back to top (otherwise, page might be misaligned to panels), and disable scroll bars
   useEffect(() => {
     scrollSpring.set(window.scrollY, false);
     scrollSpring.set(0);
+
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = "auto";
+    };
   }, []);
 
   const scrollToPanel = (panelNum: number) => {
