@@ -6,7 +6,7 @@ import TeamPanel from "./components/panels/TeamPanel";
 import AboutPanel from "./components/panels/AboutPanel";
 import Panel3 from "./components/panels/Panel3";
 import { useSpring } from "framer-motion";
-import smoothScroll from "./utils/smoothScroll";
+import useSmoothScroll from "./hooks/smoothScroll";
 
 const App = () => {
   const scrollSpring = useSpring(window.scrollY, { duration: 1000 });
@@ -33,7 +33,7 @@ const App = () => {
     scrollSpring.set(panel.offsetTop);
   };
 
-  smoothScroll(scrollToPanel, panels.length);
+  useSmoothScroll(scrollToPanel, panels.length);
 
   return (
     <div>

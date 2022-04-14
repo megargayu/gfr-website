@@ -1,6 +1,11 @@
 // TODO: handle different panels properly
-// TODO: prevent smooth scrolling up on first and down on last panels to allow for other functions (eg. reloading) 
-const smoothScroll = (scrollToPanel: (panel: number) => void, numPanels: number) => {
+import { useEffect } from "react";
+
+// TODO: prevent smooth scrolling up on first and down on last panels to allow for other functions (eg. reloading)
+const useSmoothScroll = (
+  scrollToPanel: (panel: number) => void,
+  numPanels: number
+) => {
   const smoothWheel = (e: WheelEvent) => {
     e.preventDefault();
 
@@ -22,7 +27,7 @@ const smoothScroll = (scrollToPanel: (panel: number) => void, numPanels: number)
       else if (deltaY > 0) scrollToPanel(0);
     }
 
-    //  make sure the previousState is constantly updated, otherwise previous scrolls will affect it
+    // make sure the previousState is constantly updated, otherwise previous scrolls will affect it
     smoothTouchPreviousState = e.changedTouches[0].clientY;
     if (smoothTouchTimeout) clearTimeout(smoothTouchTimeout);
     smoothTouchTimeout = setTimeout(
@@ -61,9 +66,19 @@ const smoothScroll = (scrollToPanel: (panel: number) => void, numPanels: number)
     }
   };
 
-  document.addEventListener("wheel", smoothWheel, { passive: false });
-  document.addEventListener("keydown", smoothKeys, { passive: false });
-  document.addEventListener("touchmove", smoothTouch, { passive: false });
+  useEffect(() => {
+    document.addEventListener("wheel", smoothWheel, { passive: false });
+    document.addEventListener("keydown", smoothKeys, { passive: false });
+    document.addEventListener("touchmove", smoothTouch, { passive: false });
+
+    return () => {
+      document.removeEventListener("wheel", smoothWheel);
+      document.removeEventListener("keydown", smoothKeys);
+      document.removeEventListener("touchmove", smoothTouch);
+
+      if (smoothTouchTimeout) clearTimeout(smoothTouchTimeout);
+    };
+  }, []);
 };
 
-export default smoothScroll;
+export default useSmoothScroll;
