@@ -1,11 +1,15 @@
 import { useSpring } from "framer-motion";
 import { useEffect } from "react";
 
+const SPRING_DURATION = 1000;
+const LOCK_DURATION = 2000;
+
 // TODO: prevent smooth scrolling up on first and down on last panels to allow for other functions (eg. reloading)
+// TODO: lock based on previous scroll
 const useSmoothScroll = (
   refs: React.MutableRefObject<HTMLDivElement | null>[]
 ) => {
-  const scrollSpring = useSpring(window.scrollY, { duration: 1000 });
+  const scrollSpring = useSpring(window.scrollY, { duration: SPRING_DURATION });
   scrollSpring.onChange((v) => window.scrollTo({ top: v }));
 
   const scrollToPanel = (panelNum: number) => {
@@ -43,7 +47,7 @@ const useSmoothScroll = (
   const deactivate = () => {
     if (activeTimeout) clearTimeout(activeTimeout);
     active = false;
-    activeTimeout = setTimeout(() => (active = true), 1100);
+    activeTimeout = setTimeout(() => (active = true), LOCK_DURATION);
   };
 
   const smoothWheel = (e: WheelEvent) => {
