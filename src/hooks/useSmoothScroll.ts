@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 const SPRING_DURATION = 1000;
 const LOCK_DURATION = 2000;
+const LOCK_BETWEEN_DURATION = SPRING_DURATION;
 
 // TODO: prevent smooth scrolling up on first and down on last panels to allow for other functions (eg. reloading)
 // TODO: lock based on previous scroll
@@ -43,7 +44,12 @@ const useSmoothScroll = (
   };
 
   let active = true;
+  let lastTime = 0;
   let activeTimeout: NodeJS.Timeout | undefined = undefined;
+  const isActive = () => {
+    return active || lastTime + LOCK_BETWEEN_DURATION < Date.now();
+  }
+
   const deactivate = () => {
     if (activeTimeout) clearTimeout(activeTimeout);
     active = false;
@@ -52,7 +58,11 @@ const useSmoothScroll = (
 
   const smoothWheel = (e: WheelEvent) => {
     e.preventDefault();
-    if (!active) return;
+    if (!isActive()) {
+      lastTime = Date.now();
+      return;
+    }
+    lastTime = Date.now();
 
     if (e.deltaY > 0) scrollDown();
     else if (e.deltaY < 0) scrollUp();
@@ -65,7 +75,11 @@ const useSmoothScroll = (
   const smoothTouch = (e: TouchEvent) => {
     // don't restrict other movements, such as zooming in
     if (e.touches.length > 1) return;
-    if (!active) return;
+    if (!isActive()) {
+      lastTime = Date.now();
+      return;
+    }
+    lastTime = Date.now();
 
     e.preventDefault();
     if (smoothTouchPreviousState) {
@@ -87,7 +101,11 @@ const useSmoothScroll = (
   };
 
   const smoothKeys = (e: KeyboardEvent) => {
-    if (!active) return;
+    if (!isActive()) {
+      lastTime = Date.now();
+      return;
+    }
+    lastTime = Date.now();
 
     switch (e.code) {
       case "ArrowUp":
